@@ -16,8 +16,8 @@ export class MainStack extends cdk.Stack {
       versioned: IS_PROD,
       removalPolicy: IS_PROD ? cdk.RemovalPolicy.RETAIN : cdk.RemovalPolicy.DESTROY,
     });
-    const bucketMedicaments = new Bucket(this, `MedicamentPhotos`, {
-      key: new kms.Key(this, `MedicamentKey`),
+    const bucketMedals = new Bucket(this, `MedalPhotos`, {
+      key: new kms.Key(this, `MedalKey`),
       enforceSSL: IS_PROD,
       versioned: IS_PROD,
       removalPolicy: IS_PROD ? cdk.RemovalPolicy.RETAIN : cdk.RemovalPolicy.DESTROY,
@@ -41,7 +41,7 @@ export class MainStack extends cdk.Stack {
     httpApi.addRoutes({
       path: `/${ENV_NAME}/login`,
       methods: [agw.HttpMethod.POST],
-      integration: new agwIntegrations.HttpLambdaIntegration("PostMyLambda", lambdaLogin),
+      integration: new agwIntegrations.HttpLambdaIntegration("LoginAPI", lambdaLogin),
     });
   }
 }
